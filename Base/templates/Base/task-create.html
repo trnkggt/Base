@@ -1,0 +1,9 @@
+{% extends 'Base/Base.html' %}
+{% block content %}
+    <a class='anchor-link' href="{% url 'tasks' %}">&#8592; Go Back</a>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

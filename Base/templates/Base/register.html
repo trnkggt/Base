@@ -1,0 +1,15 @@
+{% extends 'Base/Base.html' %}
+{% block content %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class="button" type="submit" value="Register">
+    </form>
+{% endblock %}

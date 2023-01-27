@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+  <style>
+    body {
+        padding-top: 50px;
+        font-family: 'Roboto Mono', monospace;
+    }
+    .container {
+      max-width: 550px;
+      margin: auto;
+      background-color: #fff;
+      -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+      box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    }
+    .header-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+            background-color: #d3d3d3;
+        }
+    .search-bar {
+        padding: 10px;
+    }
+
+     .delete-link {
+            text-decoration: none;
+            font-weight: 900;
+            color: #d3d3d3;
+            font-size: 22px;
+            line-height: 0;
+
+        }
+     .task-complete-icon {
+            height: 20px;
+            width: 20px;
+            background-color: rgb(105, 192, 105);
+            border-radius: 50%;
+            margin: 17px 5px;
+        }
+
+        .task-incomplete-icon {
+            height: 20px;
+            width: 20px;
+            background-color: rgb(218, 218, 218);
+            border-radius: 50%;
+            margin: 17px 5px;
+        }
+       .task-wrapper {
+
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            border-top: 1px solid #dfe4ea;
+            overflow: hidden;
+        }
+
+       .task-title {
+            display: flex;
+            border-style: solid;
+            border-width: 1px;
+            margin: 1px;
+            border-color: #d3d3d3;
+       }
+     .anchor-link {
+        text-decoration: none;
+     }
+
+        input {
+            outline: none;
+            border: none;
+        }
+
+
+     #add-link {
+            color: #d3d3d3;
+            text-decoration: none;
+            font-size: 42px;
+            text-shadow: 1px 1px #81413b;
+        }
+      #search-add-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+      input[type=text],
+        input[type=password],
+        textarea {
+            border: 1px solid #757575;
+            border-radius: 5px;
+            padding: 1px;
+            width: 70%;
+        }
+     .button {
+            border: 1px solid #757575;
+            background-color: #FFF;
+
+            padding: 1px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+  </style>
+</head>
+<body>
+<div class="container">
+  {% block content %}
+  {% endblock %}
+ </div>
+</body>
+</html>
