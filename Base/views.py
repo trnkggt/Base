@@ -16,6 +16,9 @@ from .forms import TaskForm
 # Create your views here.
 
 
+
+### TASKS
+## get tasks created by current user
 class TaskList(ListView):
     model = Task
     template_name = 'Base/home-page.html'
@@ -53,12 +56,17 @@ def create_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_task = form.save(commit=False)
+            new_task.user_id = request.user.pk
+            new_task.save()
+
         return redirect('tasks')
     else:
         form = TaskForm()
     return render(request, 'Base/task-create.html', {'form':form})
 
+
+## Class Based View to update a task
 class TaskUpdate(UpdateView):
     model = Task
     fields = ['content', 'title', 'complete']
@@ -71,21 +79,38 @@ class TaskUpdate(UpdateView):
 
 ## Function Based View to update a task
 @login_required
-def update_task(request, task_pk):
+def update_task(request, pk):
     if request.method == 'POST':
-        form = TaskForm(request.POST, instance=Task.objects.get(pk=task_pk))
+        form = TaskForm(request.POST, instance=Task.objects.get(pk=pk))
         if form.is_valid():
             form.save()
         return redirect('tasks')
     else:
-        form = TaskForm(instance=Task.objects.get(pk=task_pk))
+        form = TaskForm(instance=Task.objects.get(pk=pk))
     return render(request, 'Base/task-create.html', {'form':form})
 
+
+## Class Based View to delete a task
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     success_url = reverse_lazy('tasks')
     template_name = 'Base/task-delete.html'
 
+## Function Based View to delete a task
+def delete_task(request, pk):
+    obj = Task.objects.get(pk=pk)
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('tasks')
+    return render(request, 'Base/task-delete.html')
+
+### TASKS
+
+
+
+#### USER AUTH
+
+## Class Based View for login
 class MyLoginView(LoginView):
     redirect_authenticated_user = True
     template_name = 'Base/login.html'
@@ -125,3 +150,6 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'Base/register.html', {'form':form})
+
+
+#### USER AUTH
